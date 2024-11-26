@@ -13,6 +13,7 @@ library(ggtext)
 
 file.end <- format(Sys.Date(), "%Y%m%d")
 
+
 #### Analysis preparation #### 
 source('CEA_functions.R')
 load("Bootstrap/bootstrap_non16"); params_non16 <- pars[! pars[,3] > 0.95,]
