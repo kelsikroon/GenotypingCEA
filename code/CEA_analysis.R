@@ -11,6 +11,7 @@ library(tidyverse)
 library(ggrepel)
 library(ggtext)
 
+source("CEA_data.R") # change path in this script to the path to pobascam data on your computer
 file.end <- format(Sys.Date(), "%Y%m%d")
 
 

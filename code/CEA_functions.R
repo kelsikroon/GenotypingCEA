@@ -275,19 +275,19 @@ organiseAndSave <- function(data, name){
     ungroup() %>% 
     mutate(time = as.numeric(time), strategy = paste0(BMDStrategy, "-", NormalStrategy)) 
   
-  save(res, file=paste0("resultsCEA_", name, "_", file.end, ".RData"))
+  save(res, file=paste0("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/resultsCEA_", name, "_", file.end, ".RData"))
   
   # organise for excel file for manuscript
   if (name != 'onerun'){
     res  %>% as.data.frame() %>% mutate_if(is.numeric, round, 2) %>%
       mutate(time = as.factor(time), strategy = as.factor(strategy), combined = paste0(NHB_d, " (", NHBlower_d, ", ", NHBupper_d, ")")) %>%
       select(c(combined, time, strategy)) %>%
-      reshape(., idvar = "strategy", timevar = "time", direction = "wide") %>% write.xlsx(paste0("resultsCEA_", name, "_", file.end, ".xlsx"))
+      reshape(., idvar = "strategy", timevar = "time", direction = "wide") %>% write.xlsx(paste0("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/resultsCEA_", name, "_", file.end, ".xlsx"))
   }else{
     res  %>% as.data.frame() %>% mutate_if(is.numeric, round, 2) %>%
       mutate(time = as.factor(time), strategy = as.factor(strategy)) %>%
       select(c(NHB_d, time, strategy)) %>%
-      reshape(., idvar = "strategy", timevar = "time", direction = "wide")  %>% write.xlsx(paste0("resultsCEA_", name, "_", file.end, ".xlsx"))
+      reshape(., idvar = "strategy", timevar = "time", direction = "wide")  %>% write.xlsx(paste0("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/resultsCEA_", name, "_", file.end, ".xlsx"))
   }
   return(res)
 }
