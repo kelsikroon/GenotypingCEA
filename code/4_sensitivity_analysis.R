@@ -18,7 +18,7 @@ res_SA3 <- do.call(rbind, lapply(onsetTimes, function(x) one_rep(ref.data.cens, 
 
 # 4. ICER THRESHOLD CHANGES TO 50,000EUR ------------------------------------------
 source("2_parameters.R")
-ICERthreshold <- 20000 # update ICER threshold
+ICERthreshold <- 50000 # update ICER threshold
 res_SA4 <- do.call(rbind, lapply(onsetTimes, function(x) one_rep(ref.data.cens, x)))
 
 
