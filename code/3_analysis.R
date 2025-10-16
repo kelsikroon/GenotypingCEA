@@ -42,7 +42,7 @@ nmb_plot
 basecase_res %>% select(strategy, time, referred, cin23_2rounds, cxca_2rounds) %>% subset(time %in% c(5, 10)) %>% 
   pivot_wider(names_from = time, values_from = c(cin23_2rounds, cxca_2rounds)) %>% mutate(across(.fns = ~ format(round(.x, digits = 0), nsmall = 0))) %>% 
   select(strategy, referred, cin23_2rounds_5, cxca_2rounds_5, cin23_2rounds_10, cxca_2rounds_10) %>% 
-  write.csv("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/TableS2.csv")
+  write.csv("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/Table3.csv")
 
 
 ########### Bootstrap analysis (for confidence intervals for NHB & for probabilistic analysis) ########### 
@@ -68,11 +68,11 @@ res_temp1$rep <- rep(1:n.reps, each=length(onsetTimes)*length(ascus.strategies))
 res_temp1 <- subset(res_temp1, time<=10)
 
 #-------------  TABLE S1: basecase NMB and bootstrap 95% CI NMB of each strategy at each time  -------------#
-cbind(res_temp1, NMB_bc = rep(basecase_res$NMB_d, n.reps)) %>% group_by(strategy, time) %>% 
-  summarise(nmb = paste0(spec_dec(NMB_bc[1], 1), " (", spec_dec(quantile(NMB_d, 0.025), 1), ", ", spec_dec(quantile(NMB_d, 0.975),1), ")")) %>% 
-  pivot_wider(names_from = time, values_from = nmb) %>%   
-  write.csv("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/TableS1.csv")
-  
+# cbind(res_temp1, NMB_bc = rep(basecase_res$NMB_d, n.reps)) %>% group_by(strategy, time) %>% 
+#   summarise(nmb = paste0(spec_dec(NMB_bc[1], 1), " (", spec_dec(quantile(NMB_d, 0.025), 1), ", ", spec_dec(quantile(NMB_d, 0.975),1), ")")) %>% 
+#   pivot_wider(names_from = time, values_from = nmb) %>%   
+#   write.csv("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/TableS1.csv")
+#   
 
 ########### Probabilistic analysis ########### 
 # for each time since onset, find the probability a strategy comes out best in the bootstrap reps 
