@@ -51,7 +51,7 @@ registerDoParallel(myCluster)
 n.reps <- 500 
 res_temp1 <- foreach (i = 1:n.reps) %dopar% {
   library(dplyr)
-  load('~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/ref.data.cens.RData') # data already organised/prepared for analysis
+  load('~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/data/ref.data.cens.RData') # data already organised/prepared for analysis
   source("1_functions.R") # functions for CEA and to get number of referrals
   source("2_parameters.R")# reset parameters
   
@@ -61,9 +61,9 @@ res_temp1 <- foreach (i = 1:n.reps) %dopar% {
 }
 stopCluster(myCluster)  ; save(res_temp1, file='~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/bootstrap_results_20250723.Rdata')
 
-load("bootstrap_results_20250723.Rdata")
+load("~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/results/bootstrap_results_20250723.Rdata")
 res_temp1 <- do.call(rbind, unlist(res_temp1, recursive=F))
-res_temp1$rep <- rep(1:n.reps, each=16*length(ascus.strategies))
+res_temp1$rep <- rep(1:n.reps, each=length(onsetTimes)*length(ascus.strategies))
 
 res_temp1 <- subset(res_temp1, time<=10)
 
