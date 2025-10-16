@@ -1,5 +1,5 @@
 source("1_functions.R")
-load('~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/code/ref.data.cens.RData') # data already organised/prepared for analysis
+load('~/Desktop/PhD/Projects/Colposcopy CEA/GenotypingCEA/data/ref.data.cens.RData') # data already organised/prepared for analysis
 
 # 1. TIME BETWEEN FIGO STAGE 1 TO 2/3 CHANGES FROM 8 YEARS TO 4 YEARS ------------------------------------------
 source("2_parameters.R") # reset parameters 

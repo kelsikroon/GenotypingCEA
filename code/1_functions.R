@@ -403,7 +403,7 @@ plotCEA <- function(results, cuttime=14, label='long', printplot=T, maximumY = 1
     geom_line(data=results[results$inBest & results$time < cuttime + 0.05,], lwd=.8) +
     xlab("Time since CIN2/3 onset (years)") + 
     ylab("NMB (\u20AC/woman) (relative to reference strategy: refer all)") + 
-    theme(legend.position='inside', legend.position.inside = c(0.12, 0.13), axis.text = element_text(size=15), 
+    theme(legend.position='inside', legend.position.inside = c(0.20, 0.13), axis.text = element_text(size=15), 
           text = element_text(size=13), plot.margin = unit(c(1,4,1,1), "cm")) + 
     scale_x_continuous(expand = c(0,0), limits=c(0, cuttime), breaks=seq(0, cuttime, 1))  + 
     scale_y_continuous(expand = c(0, 0), limits=c(-0.0001, maximumY +5), breaks=seq(0, maximumY, 100)) +

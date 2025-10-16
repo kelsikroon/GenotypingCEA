@@ -56,7 +56,7 @@ Notdeathfromothercauses5yr <- 1
 Maxlifeyearslost <- 43.35   
 
 
-ICERthreshold <- 50000
+ICERthreshold <- 20000
 
 ################### DATA progression / missed cancer NATIONAL registry ########## 
 ### Cancersdetected : number of cancers versus number of CIN2/3 in national program, year 2017 (Inturrisi et al. Lancet Regional Health 2021)
