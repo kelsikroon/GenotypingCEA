@@ -2,17 +2,18 @@
 Code for analysis and results in paper "Cost-effectiveness analysis of human papillomavirus (HPV) genotyping strategies for management of HPV-positive women in cervical cancer screening" (under review)
 
 - `codes/`: codes used in this analysis
-- `plots/`: plots used in this study
+- `plots/`: plots presented in the manuscript
 - `results/`: output csv files
 
 ## codes
-- `0_data.R`
-- `1_functions.R`
-- `2_parameters.R`
-- `3_analysis.R`
+- `0_data.R`: data preparation file
+- `1_functions.R`: file with functions for main analysis
+- `2_parameters.R`: file with parameter inputs for main analysis
+- `3_analysis.R`: main analysis file (base case analysis) and results (Figure 1, Table 3)
+- `4_sensitivity_analysis.R`: sensitivity analysis and results (Figure 2)
 
 ## plots
-- `Figure_1.png`: Results under the base-case assumptions. For times since CIN2/3 from 0 to 10 years, panel (A) shows the net monetary benefit of nineteen HPV genotyping strategies and (B) shows the probabilistic analysis results (note: strategies not labelled had 0% probability of having the highest NMB across all time points). 
+- `Figure1_NMB.png`: Results under the base-case assumptions. For times since CIN2/3 from 0 to 10 years, panel (A) shows the net monetary benefit of nineteen HPV genotyping strategies and (B) shows the probabilistic analysis results (note: strategies not labelled had 0% probability of having the highest NMB across all time points). 
 - `Figure2_NMB.png`: Results of one-way sensitivity analyses for the net monetary benefit (NMB) of nineteen strategies for times since onset CIN2/3 from 0 to 10 years.
 
 ## results
