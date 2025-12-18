@@ -15,9 +15,9 @@ library(cowplot)
 library(gridExtra)
 
 # Analysis preparation ----------------------------------------------------
-setwd("~/Projects/Colposcopy CEA/Analysis/code")
-load("~/Projects/Colposcopy CEA/Analysis/data/ref.data.cens.RData")
-source("1_functions_v2.R")
+
+load("data/ref.data.cens.RData")
+source("1_functions.R")
 source("2_parameters.R") # ensure parameters are set
 
 set.seed(130601)
@@ -47,7 +47,7 @@ basecase_res %>% select(strategy, time, referred, NMB_d, cin23_2rounds, cxca_2ro
   mutate(across(starts_with("r"), ~ round(., 0))) %>%  
   mutate(across(everything(), as.numeric)) %>% 
   select(strategy, referred, NMB_d_5, cin23_2rounds_5, cxca_2rounds_5, NMB_d_10, cin23_2rounds_10, cxca_2rounds_10) %>% 
-  write.csv("~/Projects/Colposcopy CEA/Analysis/results/Table3.csv", row.names = F)
+  write.csv("results/Table3.csv", row.names = F)
 
 
 # Bootstrap analysis (for 95% CI's & for probabilistic analysis) ----------
@@ -56,15 +56,15 @@ registerDoParallel(myCluster)
 n.reps <- 500 
 res_temp1 <- foreach (i = 1:n.reps) %dopar% {
   library(dplyr)
-  load('~/Projects/Colposcopy CEA/Analysis/data/ref.data.cens.RData') # data already organised/prepared for analysis
-  source("1_functions_v2.R") # functions for CEA and to get number of referrals
-  source("2_parameters.R")# reset parameters
+  load('data/ref.data.cens.RData') # data already organised/prepared for analysis
+  source("code/1_functions.R") # functions for CEA and to get number of referrals
+  source("code/2_parameters.R")# reset parameters
   
   dat <- ref.data.cens[sample(1:dim(ref.data.cens)[1], replace = T),] # for each rep resample POBASCAM data
   temp <- lapply(onsetTimes, function(x) one_rep(dat, x)) # loop through the time points and store results for each strategy at that time since onset
   temp
 }
-stopCluster(myCluster)  ; save(res_temp1, file='~/Projects/Colposcopy CEA/Analysis/results/bootstrap_results_20251023.Rdata')
+stopCluster(myCluster)  ; save(res_temp1, file='results/bootstrap_results_20251023.Rdata')
 
 res_temp1 <- do.call(rbind, unlist(res_temp1, recursive=F))
 res_temp1$rep <- rep(1:n.reps, each=length(onsetTimes)*length(ascus.strategies))
@@ -136,4 +136,5 @@ nmb_plot <- plotCEA(basecase_res, cuttime=10, maximumY = 350)
 
 plot_grid(nmb_plot, prob_plot, ncol=2, labels=c("(A)", "(B)"))
 ggsave("~/Projects/Colposcopy CEA/IJC Submission/Figure2.pdf", dpi=600, width=18, height=10) # save plot 
+
 
