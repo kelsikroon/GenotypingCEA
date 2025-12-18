@@ -8,7 +8,7 @@ discc <- 1.03
 ICERthreshold <- 20000
 
 # Survival data -----------------------------------------------------------
-load("~/Projects/Colposcopy CEA/Analysis/data/relative_survivals.RData")
+load("data/relative_survivals.RData")
 Survivalyr2 <- Survivalyr2[-1] # relative survival 5 years later for estimating stage shift effect
 Survivalyr <- Survivalyr[-1]
 
@@ -35,7 +35,7 @@ CostCIN2 <- 1820 / 126.09 * 130.31
 CostCIN3 <- 2183 / 126.09 * 130.31
 
 # cancer/age distribution in NCR data
-ageDist_cancer <- read_excel("~/Projects/Colposcopy CEA/Analysis/data/NCR-export-29_01_2025_11_06_33.xlsx", skip = 9)[,c(1:5)]
+ageDist_cancer <- read_excel("data/NCR-export-29_01_2025_11_06_33.xlsx", skip = 9)[,c(1:5)]
 colnames(ageDist_cancer) <- c("Year", "ageGroup", "Stage", "Dist", "N")
 NLperc <- ageDist_cancer %>% filter(ageGroup %in% sapply(4:13, function(i) paste0((i-1)*5, "-", i*5-1))) %>% 
   group_by(ageGroup) %>% summarise(tot = sum(N)) %>% ungroup() %>% mutate(perc = tot/sum(tot)) %>% select(perc)
@@ -45,7 +45,7 @@ Costcancer_indirect <- (sum(costsGER * NLperc) * 0.744/0.711) / 91.59 * 130.31 #
 Costcancer_direct <- 8000 / 93.73 * 130.31 # de Kok EJC 2011
 Costcancer <- Costcancer_direct + Costcancer_indirect #  15094.61
  
-ageDist_death <- read_excel("~/Projects/Colposcopy CEA/Analysis/data/NCR-export-2025_04_07_01_43_21.xlsx", skip = 9)[,c(1:3)] #https://nkr-cijfers.iknl.nl/viewer/sterfte-per-jaar?language=en_GB&viewerId=7dbce7a9-666c-411b-8c24-96c9291c078c
+ageDist_death <- read_excel("data/NCR-export-2025_04_07_01_43_21.xlsx", skip = 9)[,c(1:3)] #https://nkr-cijfers.iknl.nl/viewer/sterfte-per-jaar?language=en_GB&viewerId=7dbce7a9-666c-411b-8c24-96c9291c078c
 colnames(ageDist_death) <- c("Year", "ageGroup", "N")
 NLperc_death <- ageDist_death %>% group_by(ageGroup) %>% summarise(tot = sum(N)) %>% ungroup() %>% mutate(perc = tot/sum(tot)) %>% select(perc)
 
@@ -72,3 +72,4 @@ Costdeath <- Costdeath_direct + Costdeath_indirect #  557789.5
 # load("NCR_stage_props.RData")
 #t_reset <- stage_props[1]/(stage_props[1] + stage_props[2])*mean(time1) + stage_props[2]/(stage_props[1] + stage_props[2])*mean(time2) # overall mean time = weighted average = 2.946024
 t_reset <- 3 # round the overall mean time to 3
+
