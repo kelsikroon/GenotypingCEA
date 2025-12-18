@@ -497,7 +497,7 @@ survival5yearsLater <- function(time1to23 = 8){
   # nki.dat <- nki.dat[nki.dat$Stage != 'Unknown', 1:4]
   # nki.dat$Years <- as.numeric(nki.dat$Years)
   # save(nki.dat, file='nki.dat.RData')
-  load("~/Projects/Colposcopy CEA/Analysis/data/NKI_data.RData")
+  load("data/NKI_data.RData")
   
   Fconv_sympt <- function(x, rate1, rate2, sympt1, sympt2){
     return((rate1*rate2 / (rate2 + sympt2 - rate1 - sympt1))*((1 - exp(-x*(rate1 + sympt1)))/(rate1 + sympt1) - (1 - exp(-x*(rate2 + sympt2)))/(rate2 + sympt2)))
@@ -544,4 +544,5 @@ survival5yearsLater <- function(time1to23 = 8){
   
   return(data.frame(Survivalyr, Survivalyr2))
 }
+
 
