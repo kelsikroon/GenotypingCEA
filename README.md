@@ -1,5 +1,5 @@
 # GenotypingCEA
-Code for analysis and results in paper "Cost-effectiveness analysis of human papillomavirus (HPV) genotyping strategies for management of HPV-positive women in cervical cancer screening" (under review)
+Code for analysis and results in paper "Cost-effectiveness analysis of human papillomavirus (HPV) genotyping strategies for management of HPV-positive women in cervical cancer screening" (Kroon et al., 2026, IJC, https://doi.org/10.1002/ijc.70344)
 
 - `codes/`: codes used in this analysis
 - `data/`: data used in this analysis
